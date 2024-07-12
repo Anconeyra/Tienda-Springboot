@@ -60,4 +60,4 @@ Además de las funciones descritas para el usuario con rol ‘empleado’:
 ## Database
 - MySql
 
-## Si deseas que funcione el aplicativo móvil necesitas crear un base de datos despúes de ello necesitas poner toda esa configuración en properties,
+## Si deseas que funcione el aplicativo web necesitas crear un base de datos despúes de ello necesitas poner toda esa configuración en properties.
