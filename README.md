@@ -4,7 +4,7 @@ Aplicación de una tienda online realizada para el proyecto final del curso que 
 
 ## Autor: Anconeyra Suyo Frank
 
-**Fecha Inicio Proyecto: 27/06/2024**
+**Fecha Inicio Proyecto: 15/06/2024**
 
 **Ultima Actualización: 12/07/2024**
 
