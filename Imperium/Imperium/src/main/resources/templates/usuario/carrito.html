@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="<%=request.getContextPath()%>/media/logo-tienda.ico">
+	<title>Contenido del carrito</title>
+	
+	<!-- Bootstrap core CSS -->
+    <link th:href="@{/bootstrap/assets/dist/css/bootstrap.min.css}" rel="stylesheet">
+
+	<!-- Custom styles for this template -->
+    <link th:href="@{/css/estilos.css}" type="text/css" rel="stylesheet">
+    <link th:href="@{/bootstrap/list-groups/list-groups.css}" rel="stylesheet">
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+      .list-group{
+        margin-top: 0rem;
+    }
+    .textoCantidad{
+		color:black;
+}
+    </style>
+</head>
+<body>
+    <header th:replace="/fragments/header"></header>
+    <section class="py-5 text-center container">
+        <div class="row py-lg-5">
+          <div class="col-lg-6 col-md-8 mx-auto">
+            <h3 class="fw-light">CARRITO DE LA COMPRA</h3>
+          </div>
+        </div>
+    </section>
+    <div class="list-group">
+          <span th:if="${session.carrito.size() != 0}">
+            <h4 class="d-flex justify-content-between align-items-center mb-3">
+               <span class="text-primary">Tu carrito</span>
+               <span class="badge bg-primary rounded-pill"></span>
+            </h4>
+            <div th:each="producto: ${session.carrito}" class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
+                  <img th:src="@{/img/productos/}+${producto.id}+@{.PNG}" alt="twbs" width="100" height="100" class="rounded-circle flex-shrink-0">
+                  <div class="d-flex gap-2 w-100 justify-content-between">
+                        <div>
+                          <h6 th:text="${producto.nombre}" class="mb-0"></h6>
+                          <small class="opacity-50 text-nowrap textoCantidad">Cantidad: <small th:text="${producto.cantidad}"></small></small><br>
+                          <small class="opacity-50 text-nowrap">Precio: <small class="font-weight-bold" th:text="${producto.precio}"></small> S/</small>
+                        </div>
+                        <a class="eliminarProducto" th:href="@{/usuario/carrito/eliminarProducto/(id=${producto.id})}"><small class="opacity-50 text-nowrap">Eliminar</small></a>
+                  </div>
+            </div>
+            <div class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
+              <div class="d-flex gap-2 w-100 justify-content-between">
+                    <div>
+                        <h6 class="mb-0">Total</h6>
+                    </div>
+                    <a><small><span th:text = "${session.totalCarrito}"></span>S/</small></a>
+              </div>
+            </div>
+            <div class="d-flex flex-row-reverse bd-highlight">
+                <div class="p-2 bd-highlight">
+                   <a th:href="@{/usuario/carrito/finalizarCompra}" 
+                   class="btn btn-primary my-2">Finalizar compra</a>
+                </div>
+            </div>
+        </span>
+        <span th:unless="${session.carrito.size() != 0}">
+            <section class="py-5 text-center container">
+                <p class="lead text-muted">¡Tu carrito de la compra está vacío!</p>
+            </section>
+        </span>
+    </div>
+    <footer th:replace="/fragments/footer" class="text-muted py-5 cambiarfooter"></footer>
+    <script src="@{/bootstrap/assets/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

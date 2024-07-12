@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+	    <link rel="icon" href="<%=request.getContextPath()%>/media/logo-tienda.ico">
+		<title>Mis pedidos</title>
+		
+		<!-- Bootstrap core CSS -->
+    	<link th:href="@{/bootstrap/assets/dist/css/bootstrap.min.css}" rel="stylesheet">
+    	
+    	<!-- Custom styles for this template -->
+    	<link rel="stylesheet" type="text/css" th:href="@{http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css}">
+    	<link th:href="@{/css/estilos.css}" rel="stylesheet">
+    	<link th:href="@{/css/estilosPerfilUsuario.css}" rel="stylesheet">
+		
+		<style>
+			header{
+				margin-bottom:20px;
+			}
+			.anchoContenedor{
+	        	width: 100%;
+			}
+			.altoFormulario{
+			   height: auto;
+			}
+			footer{
+			   position: fixed;
+			   bottom: 0;
+			   width: 100%;
+			}
+			.letraBotonesMenu{
+                font-size: 20px;
+                border: none;
+            }
+            .verPedidos{
+				background-color: white;
+			}
+			.bi{
+                vertical-align: -.125em;
+            }
+            .errorCancelarPedido{
+                color: red;
+                text-decoration: none;
+                font-size: 14px;
+                text-align: center;
+                margin-left: 2px;
+            }
+            .errorCancelarPedido:hover{
+                color: red;
+            }             
+		</style>
+	</head>
+	<body>
+		<header th:replace="/fragments/header"></header>
+		<div class="container">
+		<div class="row gutters">
+		<div th:replace="/fragments/perfil"></div>
+		<div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
+			<div class="card h-100">
+				<div class="card-body verPedidos">
+				<div>
+				<a class="errorCancelarPedido" th:text="${errorCancelarPedido}"></a>
+				    <div class="d-md-flex d-none justify-content-md-between justify-content-sm-center align-content-center border-bottom border-2 my-2 bg-dark text-light p-3 ">
+				        <div class="col-2 text-sm-center text-md-start align-self-center">
+				            <h1 class="h6 fw-bold">Numero de pedido</h1>
+				        </div>
+				        <div class="col-2 align-self-center">
+				            <h1 class="h6 fw-bold">Fecha</h1>
+				        </div>
+				        <div class="col-1 align-self-center">
+				            <h1 class="h6 fw-bold">Estado</h1>
+				        </div>
+				        <div class="col-2 align-self-center">
+                            <h1 class="h6 fw-bold"></h1>
+                        </div>
+				        <div class="col-2 align-self-center">
+				            <h1 class="h6 fw-bold"></h1>
+				        </div>
+				        <div class="col-2 align-self-center">
+				            <h1 class="h6 fw-bold"></h1>
+				        </div>
+				    </div>
+				    <div th:each="pedido : ${session.pedidosUsuario}" class="d-md-flex d-sm-block justify-content-md-between justify-content-sm-center text-center border-bottom border-2 my-2 bg-light text-dark p-2 ">
+				        <div class="col-md-2 text-sm-center text-md-start align-self-center my-2">
+				            <h1 th:text="${pedido.num_factura}" class="h6"></h1>
+				        </div>
+				        <div class="col-md-2 text-sm-center text-md-start align-self-center my-2">
+				            <h1 th:text="${pedido.fecha}" class="h6"></h1>
+				        </div>
+				        <div class="col-md-1 text-sm-center text-md-start align-self-center my-2">
+				            <h1 th:text="${pedido.estado_pedido}" class="h6"></h1>
+				        </div>
+				        <a class="btn btn-outline-dark w-100" th:if="${pedido.estado_pedido.name() == 'E'}" th:href="@{'/facturas/factura_' + ${pedido.num_factura} + '.pdf'}" target="_blank">Descargar factura</a>
+
+				        <div class="col-md-2 text-sm-center text-md-start align-self-center my-2"> <a class="btn btn-outline-dark w-100" th:href="@{/usuario/miPerfil/verDetallePedido/}+${pedido.id}">Detalles</a> </div>
+				        <div class="col-md-2 text-sm-center text-md-start align-self-center my-2"> <a class="btn btn-outline-dark w-100" onclick="return confirmarEliminacion()" th:href="@{/usuario/miPerfil/cancelarPedido/}+${pedido.id}">Cancelar</a></div>
+				    </div>
+				</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+	<footer th:replace="/fragments/footer"></footer>
+	<script th:src = "@{/js/confirmacionEliminar.js}" language = "JavaScript"></script>
+	</body>
+</html>

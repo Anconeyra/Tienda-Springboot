@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" th:href="@{/img/descarga.png}">
+	<title>Catalogo</title>
+	
+	<!-- Bootstrap core CSS -->
+    <link th:href="@{/bootstrap/assets/dist/css/bootstrap.min.css}" rel="stylesheet">
+    
+    <!-- Custom styles for this template -->
+    <link th:href="@{/css/estilos.css}" rel="stylesheet">
+
+    <style>
+          .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+          }
+    
+          @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+              font-size: 3.5rem;
+            }
+          }
+          .bi {
+    		  vertical-align: -.125em;
+    		  fill: currentColor;
+    	  }
+    	  .textoProducto{
+    	      text-decoration:none;
+          }
+          .card{
+    	      border-radius: 0rem;
+    	  }
+    	  .botonAnadirProducto{
+              border-radius: 0px;
+          }
+          .campoBuscarProducto{
+            border-radius: 0px;  
+          }
+    </style>
+</head>
+<body>
+	<header th:replace="/fragments/header"></header>
+	<section class="py-5 text-center container">
+	    	<br>
+	      <div class="col-lg-6 col-md-8 mx-auto">
+	        <h1 class="fw-light">Productos Top Junio</h1>
+	        <p class="lead text-muted">Estas listo para comprar en la mejor tienda del Perú</p>
+	        <div class="mw-100 w-100 p-3">
+	           <form th:action="@{/buscarProducto}" method="get">
+	               <input class="form-control campoBuscarProducto" type="text" placeholder="Buscar productos..." name="buscar" aria-label="Buscar">
+	           </form>
+            </div>
+	    </div>
+	</section>
+	<div class="album py-5 bg-light">
+	    <div class="container">
+	        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+	            <div th:each="producto: ${catalogo}" class="col">
+		          <div class="card shadow-sm">
+		            <img th:src="@{/img/productos/}+${producto.id}+@{.PNG}">
+		            <div class="card-body">
+		              <a th:href="@{/anonimo/detalleProducto/}+${producto.id}" class="textoProducto"><p th:text="${producto.nombre}" class="card-text"></p></a>
+		              <div class="d-flex justify-content-between align-items-center">
+		                <small class="text-muted">S/. <span th:text="${producto.precio * 4.5}"></span></small>
+
+		                <div class="btn-group">
+		                  <a class="btn btn-sm btn-outline-secondary botonAnadirProducto" th:href="@{/meterProducto(id=${producto.id})}">Añadir</a>
+		                </div>
+		              </div>
+		            </div>
+		          </div>
+		        </div>
+	        </div>
+	    </div>
+	</div>
+		
+
+		
+	
+	<footer th:replace="/fragments/footer"></footer>
+    <script th:src="@{/bootstrap/assets/dist/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>

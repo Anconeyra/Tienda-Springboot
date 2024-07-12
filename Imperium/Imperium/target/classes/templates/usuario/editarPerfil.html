@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="icon" href="<%=request.getContextPath()%>/media/logo-tienda.ico">
+        <title>Editar Perfil</title>
+        
+        <!-- Bootstrap core CSS -->
+        <link th:href="@{/bootstrap/assets/dist/css/bootstrap.min.css}" rel="stylesheet">
+        
+        <!-- Custom styles for this template -->
+        <link th:href="@{/css/estilos.css}" rel="stylesheet">
+        <link th:href="@{/css/estilosPerfilUsuario.css}" rel="stylesheet">
+        
+        <style>
+            header{
+                margin-bottom:20px;
+            }
+            .anchoContenedor{
+                width: 100%;
+            }
+            .altoFormulario{
+               height: auto;
+            }
+            footer{
+               position: fixed;
+               bottom: 0;
+               width: 100%;
+            }
+            .letraBotonesMenu{
+                font-size: 20px;
+                border: none;
+            }
+            .form-control{
+                background: rgb(192, 192, 192);
+                color: black;
+                border-radius: 0px;
+                border-color: black;
+            }
+            .form-control:disabled{
+                background-color:#1b223a;
+                color:white;
+            }
+            .direccion{
+                margin-top: 20px;
+            }
+            .bi{
+                vertical-align: -.125em;
+            }
+        </style>
+    </head>
+    <body>
+        <header th:replace="/fragments/header"></header>
+        <div class="container">
+        <div class="row gutters">
+        <div th:replace="/fragments/perfil"></div>
+        
+        <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
+            <div class="card h-100">
+                <div class="card-body">
+                    <form th:action="@{/usuario/miPerfil/editarPerfilCliente}" th:object="${usuario}" method="post">
+                        <input type="hidden" th:field="*{id}" id="fullName">
+                        <input type="hidden" th:field="*{password}" id="fullName">
+                        <input type="hidden" th:field="*{rol}" id="fullName">
+                        <input type="hidden" th:field="*{nombre}" id="fullName">
+                        <div class="row gutters">
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                <h6 class="mb-3 text-primary">Editar Detalles Personales</h6>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label for="fullName">Nombre</label>
+                                    <input type="text" th:field="*{nombreUsuario}" class="form-control" id="fullName">
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label for="fullName">Apellido</label>
+                                    <input type="text" th:field="*{apellido}"class="form-control" id="fullName">
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label for="eMail">Email</label>
+                                    <input type="email" th:field="*{email}" class="form-control" id="eMail">
+                                    
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label for="phone">Telefono</label>
+                                    <input type="text" th:field="*{telefono}" class="form-control" id="phone">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row gutters direccion">
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                <h6 class="mb-3 text-primary">Editar Dirección</h6>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label for="Street">Calle y numero</label>
+                                    <input type="text" th:field="*{direccion}" class="form-control" id="Street">
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label for="ciTy">Localidad</label>
+                                    <input type="text" th:field="*{localidad}" class="form-control" id="ciTy">
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label for="sTate">Provincia</label>
+                                    <input type="text" th:field="*{provincia}" class="form-control" id="sTate">
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label for="sTate">Pais</label>
+                                    <input type="text" th:field="*{pais}" class="form-control" id="sTate">
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <button type="submit" id="submit" name="submit" class="btn btn-primary botonAplicarEditarPerfil">Guardar</button>
+                        </div>
+                    </form>
+                 </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <footer th:replace="/fragments/footer"></footer>
+    </body>
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+	    <link rel="icon" href="<%=request.getContextPath()%>/media/logo-tienda.ico">
+		<title>Mi perfil</title>
+		
+		<!-- Bootstrap core CSS -->
+    	<link th:href="@{/bootstrap/assets/dist/css/bootstrap.min.css}" rel="stylesheet">
+    	
+    	<!-- Custom styles for this template -->
+    	<link th:href="@{/css/estilos.css}" rel="stylesheet">
+    	<link th:href="@{/css/estilosPerfilUsuario.css}" rel="stylesheet">
+		
+		<style>
+			header{
+				margin-bottom:20px;
+			}
+			.anchoContenedor{
+	        	width: 100%;
+			}
+			.altoFormulario{
+			   height: auto;
+			}
+			footer{
+			   position: fixed;
+			   bottom: 0;
+			   width: 100%;
+			}
+			.letraBotonesMenu{
+                font-size: 20px;
+                border: none;
+            }
+            .form-control{
+                border-radius: 0px;
+            }
+            .form-control:disabled{
+				background-color:#1b223a;
+				color:white;
+			}
+			.direccion{
+				margin-top: 20px;
+			}
+			.bi{
+                vertical-align: -.125em;
+            }
+		</style>
+	</head>
+	<body>
+		<header th:replace="/fragments/header"></header>
+		<div class="container">
+		<div class="row gutters">
+		<div th:replace="/fragments/perfil"></div>
+		
+		<div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
+			<div class="card h-100">
+				<div class="card-body">
+					<div class="row gutters">
+						<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+							<h6 class="mb-3 text-primary">Detalles personales</h6>
+						</div>
+						<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+							<div class="form-group">
+								<label for="fullName">Nombre</label>
+								<input type="text" th:value="${session.datosUsuario.nombreUsuario}" class="form-control" id="fullName" readonly="readonly" disabled="disabled">
+							</div>
+						</div>
+						<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+							<div class="form-group">
+								<label for="fullName">Apellido</label>
+								<input type="text" th:value="${session.datosUsuario.apellido}" class="form-control" id="fullName" readonly="readonly" disabled="disabled">
+							</div>
+						</div>
+						<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+							<div class="form-group">
+								<label for="eMail">Email</label>
+								<input type="email" th:value="${session.datosUsuario.email}" class="form-control" id="eMail" readonly="readonly" disabled="disabled">
+								
+							</div>
+						</div>
+						<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+							<div class="form-group">
+								<label for="phone">Telefono</label>
+								<input type="text" th:value="${session.datosUsuario.telefono}" class="form-control" id="phone" readonly="readonly" disabled="disabled">
+							</div>
+						</div>
+					</div>
+					<div class="row gutters direccion">
+						<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+							<h6 class="mb-3 text-primary">Dirección</h6>
+						</div>
+						<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+							<div class="form-group">
+								<label for="Street">Calle y numero</label>
+								<input type="name" th:value="${session.datosUsuario.direccion}" class="form-control" id="Street" readonly="readonly" disabled="disabled">
+							</div>
+						</div>
+						<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+							<div class="form-group">
+								<label for="ciTy">Localidad</label>
+								<input type="name" th:value="${session.datosUsuario.localidad}" class="form-control" id="ciTy" readonly="readonly" disabled="disabled">
+							</div>
+						</div>
+						<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+							<div class="form-group">
+								<label for="sTate">Provincia</label>
+								<input type="text" th:value="${session.datosUsuario.provincia}" class="form-control" id="sTate" readonly="readonly" disabled="disabled">
+							</div>
+						</div>
+						<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+							<div class="form-group">
+								<label for="sTate">Pais</label>
+								<input type="text" th:value="${session.datosUsuario.pais}" class="form-control" id="sTate" readonly="readonly" disabled="disabled">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+	<footer th:replace="/fragments/footer"></footer>
+	</body>
+</html>

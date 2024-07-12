@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    	<meta name="viewport" content="width=device-width, initial-scale=1">
+    	<link rel="icon" th:href="@{/img/logo-tienda.ico}">
+		<title>Iniciar sesión</title>
+
+	    <!-- Bootstrap core CSS -->
+		<link th:href="@{/bootstrap/assets/dist/css/bootstrap.min.css}" rel="stylesheet">
+	
+	    <!-- Custom styles for this template -->
+        <link th:href="@{/bootstrap/sign-in/signin.css}" rel="stylesheet">
+        <link th:href="@{/css/estilos.css}" rel="stylesheet">
+	
+	    <style>
+	      .bd-placeholder-img {
+	        font-size: 1.125rem;
+	        text-anchor: middle;
+	        -webkit-user-select: none;
+	        -moz-user-select: none;
+	        user-select: none;
+	      }
+	
+	      @media (min-width: 768px) {
+	        .bd-placeholder-img-lg {
+	          font-size: 3.5rem;
+	        }
+	      }
+	      .tituloLoginIncorrecto{
+	      	margin-top: 8px;
+	      	color: red;
+	      }
+	      body{
+              margin-bottom: 30px;
+          }
+          .bi{
+              vertical-align: -.125em;
+          }
+	    </style>
+	</head>
+	<body>
+	<div class="anchoContenedor">
+	    <header th:replace="/fragments/header"></header>
+		<main class="form-signin text-center altoFormulario">
+		  <form th:action="@{/usuario/login}" th:object="${usuario}" method="post" onsubmit="return validarLogin();" name="formularioLogin" id="formularioEntrar">
+		    <a th:href="@{/}"><img class="mb-4" th:src="@{/img/logo-tienda.png}" alt="" width="150" height="150"></a>
+		    <h1 class="h3 mb-3 fw-normal">INICIO DE SESION</h1>
+		
+		    <div class="form-floating">
+		      <input type="text" th:field="*{nombre}" name="userName" id="userName" class="form-control">
+		      <label for="floatingInput">Nombre de usuario</label>
+		    </div>
+		    <div class="form-floating">
+		      <input type="password" th:field="*{password}" name="userPass" id="userPass" class="form-control">
+		      <label for="floatingPassword">Contraseña</label>
+		    </div>
+		    
+		    
+			<p class="tituloLoginIncorrecto" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></p>
+		    <p class="tituloLoginIncorrecto" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p>
+		    
+		    <p class="tituloLoginIncorrecto" id="errorNombre"></p>
+		    <p class="tituloLoginIncorrecto" th:text="${errorUsuarioNoExiste}"></p>
+		                       
+		    <p class="tituloLoginIncorrecto"><a></a></p>
+		    
+		    <input type="submit" value="login" name="enviar" id="enviar" class="w-100 btn btn-lg btn-primary botonLoginRegistro"/>
+		    
+		    <p class="tituloUsuarioNuevo">¿Eres un usuario nuevo? <a href="registro" class="registroUsuario">Registrate aqui.</a></p>
+		  </form>
+		</main>
+		<footer th:replace="/fragments/footer"></footer>
+		</div>
+        <script th:src = "@{/js/validarLogin.js}" language = "JavaScript"></script>
+	</body>
+</html>

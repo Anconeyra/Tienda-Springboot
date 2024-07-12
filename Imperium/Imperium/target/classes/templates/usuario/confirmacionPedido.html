@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" th:href="@{/media/logo-tienda.ico}">
+    <title>Pedido realizado</title>
+    
+    <!-- Bootstrap core CSS -->
+    <link th:href="@{/bootstrap/assets/dist/css/bootstrap.min.css}" rel="stylesheet">
+    
+    <!-- Custom styles for this template -->
+        <link th:href="@{/bootstrap/sign-in/signin.css}" rel="stylesheet">
+        <link th:href="@{/css/estilos.css}" rel="stylesheet">
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+        body {
+            background-color: #F8F9FA;
+            /*font-family: 'Montserrat', sans-serif*/
+        }
+        
+        .card {
+            border: none;
+        }
+        
+        .logo {
+            background-color: #212529;
+        }
+        
+        .totals tr td {
+            font-size: 13px
+        }
+        
+        .footer {
+            background-color: #C5C4C4;
+        }
+        
+        .footer span {
+            font-size: 12px
+        }
+        
+        .product-qty span {
+            font-size: 12px;
+            color: #dedbdb
+        }
+        .botonVerPedidos {
+            border-radius: 0;
+        }
+        .botonVolver{
+			border-radius: 0;
+			margin-right: 5px;
+		}
+    </style>
+</head>
+<body>
+    <div class="anchoContenedor">
+    <div class="container mt-5 mb-5">
+    <div class="row d-flex justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="text-left logo p-2 px-5"><a th:href="@{/usuario/confirmacionPedido/volverInicio}"><img th:src="@{/img/logo-tienda.png}" width="50"></a></div>
+                <div class="invoice p-5">
+                    <h5>Tu pedido se ha realizado!</h5> <span class="font-weight-bold d-block mt-4">Hola, <span th:text="${session.nombre}"></span></span> <span>Tu pedido se ha realizado y sera enviado en los proximos dias!</span>
+                    <div class="payment border-top mt-3 mb-3 border-bottom table-responsive">
+                        <table class="table table-borderless">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="py-2"> <span class="d-block text-muted">Fecha compra</span> <span th:text = "${#dates.format(session.pedido.fecha, 'dd-MMM-yyyy HH:mm')}">12 Jan,2018</span> </div>
+                                    </td>
+                                    <td>
+                                        <div class="py-2"> <span class="d-block text-muted">Numero pedido</span> <span th:text = "${session.pedido.num_factura}">MT12332345</span> </div>
+                                    </td>
+                                    <td>
+                                        <div class="py-2"> <span class="d-block text-muted">Metodo de pago</span> <span th:text = "${session.pedido.metodo_pago}"></span> </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="product border-bottom table-responsive">
+                        <table class="table table-borderless">
+                            <tbody>
+                                <tr th:each="producto: ${detalleProductos}">
+                                    <td width="20%"> <img th:src="@{/img/productos/}+${producto.id}+@{.PNG}" width="125"> </td>
+                                    <td width="60%"> <span class="font-weight-bold" th:text="${producto.nombre}"></span>
+                                        <div class="product-qty"> <span class="font-weight-bold">Cantidad: <span th:text="${producto.cantidad}"></span></span> </div>
+                                    </td>
+                                    <td width="18%">
+                                        <div class="text-right"><span th:text = "${producto.precio}"></span><span class="font-weight-bold">S/</span></div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="row d-flex justify-content-end">
+                        <div class="col-md-5">
+                            <table class="table table-borderless">
+                                <tbody class="totals">
+                                	<tr>
+                                        <td>
+                                            <div class="text-left"> <span class="text-muted">Envio</span> </div>
+                                        </td>
+                                        <td>
+                                            <div class="text-right"> <span>Gratuito</span> </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="text-left"> <span class="text-muted">Subtotal</span> </div>
+                                        </td>
+                                        <td>
+                                            <div class="text-right"> <span><span th:text="${session.precioSinImpuestos}"></span>S/</span> </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="text-left"> <span class="text-muted">Impuestos</span> </div>
+                                        </td>
+                                        <td>
+                                            <div class="text-right"> <span><span th:text="${session.impuestos}"></span>S/</span> </div>
+                                        </td>
+                                    </tr>
+                                    <tr class="border-top border-bottom">
+                                        <td>
+                                            <div class="text-left"> <span class="font-weight-bold">Subtotal</span> </div>
+                                        </td>
+                                        <td>
+                                            <div class="text-right"> <span><span class="font-weight-bold" th:text="${session.precioTotal}"></span>S/</span> </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <p>¡Enviaremos un correo electrónico de confirmación de envío a <span th:text = "${session.email}"></span>  cuando el artículo se envíe correctamente!</p>
+                    <p class="font-weight-bold mb-0">Gracias por comprar con nosotros!</p> <span>Tienda Team</span>
+                    <div class="d-flex flex-row-reverse bd-highlight">
+                    	<a th:href="@{/usuario/confirmacionPedido/verPedidos}"><button type="button" id="submit" name="submit" class="btn btn-secondary botonVerPedidos">Ver pedidos</button></a>
+                    	<a th:href="@{/usuario/confirmacionPedido/volverInicio}"><button type="button" id="submit" name="submit" class="btn btn-secondary botonVolver">Inicio</button></a>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-between footer p-3"> <span></span><span th:text = "${session.fechaActual}">12 June, 2020</span> </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</body>
+</html>

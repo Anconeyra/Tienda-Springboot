@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+	   <meta charset="utf-8">
+       <meta http-equiv="X-UA-Compatible" content="IE=edge">
+       <meta name="viewport" content="width=device-width, initial-scale=1">
+       <link rel="icon" th:href="@{/img/logo-tienda.ico}">
+	   <title>Registro</title>
+       <!-- Bootstrap core CSS -->
+       <link th:href="@{/bootstrap/assets/dist/css/bootstrap.min.css}" rel="stylesheet">
+       
+       <!-- Custom styles for this template -->
+       <link th:href="@{/bootstrap/sign-in/signin.css}" rel="stylesheet">
+       <link th:href="@{/css/estilos.css}" rel="stylesheet">
+       
+       <style>
+          .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+          }
+    
+          @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+              font-size: 3.5rem;
+            }
+          }
+          .tituloLoginIncorrecto{
+          	margin-top: 8px;
+	      	color: red;
+	      }
+	      body{
+              margin-bottom: 30px;
+          }
+          body > div{
+            width: 100%;
+          }
+          .bi{
+               vertical-align: -.125em;
+           }
+       </style>
+       
+    </head>
+    <body>
+        <div class="text-center">
+            <div class="anchoContenedor">
+            <header th:replace="/fragments/header"></header>
+            <main class="form-signin">
+               <form th:action="@{/usuario/registro}" th:object="${usuario}" method="post" onsubmit="return validarRegistro();" name="formularioRegistro" id="formularioRegistro">
+                   <a th:href="@{/}"><img class="mb-4" th:src="@{/img/logo-tienda.png}" title="Inicio" alt="" width="150" height="150"></a>
+                   <h1 class="h3 mb-3 fw-normal">FORMULARIO DE REGISTRO</h1>
+                   
+                   <div class="form-floating"> <!-- Nombre -->
+                      <input type="text" th:field="*{nombre}" class="form-control" id="userName" name="nombre" placeholder="Introduce tu nombre">
+                      <label for="floatingInput">Nombre de usuario</label>
+                   </div>  
+                   
+                   <div class="form-floating"> <!-- Email -->
+                      <input type="email" th:field="*{email}" class="form-control" id="userEmail" name="email" placeholder="Introduce tu email">
+                      <label for="floatingInput">Email</label>
+                   </div>   
+                    
+                   <div class="form-floating"> <!-- Contraseña -->
+                      <input type="password" th:field="*{password}" class="form-control" id="userPass" name="password" placeholder="Introduce tu password">
+                      <label for="floatingPassword">Contraseña</label>
+                   </div>
+                   
+                   <div class="form-floating"> <!-- Repetir Contraseña -->
+                      <input type="password" class="form-control" id="repitUserPass" name="repitPassword" placeholder="Introduce tu password de nuevo">
+                      <label for="floatingPassword">Repetir contraseña</label>
+                   </div>
+                   
+                   <p class="tituloLoginIncorrecto" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></p>
+                   <p class="tituloLoginIncorrecto" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p>
+                   
+                   <p class="tituloLoginIncorrecto" id="errorNombre"></p>
+                   <p class="tituloLoginIncorrecto" th:text="${errorUsuarioExiste}"></p>
+                   
+                    <div class="form-group"> <!-- Submit Button -->
+                        <button type="submit" class="w-100 btn btn-lg btn-primary botonLoginRegistro" >Registrate</button>
+                    </div>
+                    <p class="tituloUsuarioNuevo">¿Ya tienes una cuenta? <a th:href="@{login}" class="registroUsuario">Inicia sesion aqui.</a></p>             
+                    </form>
+                </main>
+           </div>
+        </div>
+       <footer th:replace="/fragments/footer"></footer>
+	   <script th:src = "@{/js/validarUsuario.js}" language = "JavaScript"></script>
+    </body>
+</html>

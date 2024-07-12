@@ -1,0 +1,56 @@
+/*Parametros basicos pagina web*/
+*{
+    padding: 0px;
+    margin: 0px;
+}
+
+.textoBoton{
+	text-decoration: none;
+}
+.textoUsuario{
+	text-decoration: none;
+}
+.textoBoton:hover{
+	color: orange;
+}
+
+.eliminarProducto{
+	text-decoration: none;
+	color: black;
+}
+
+.eliminarProducto:hover{
+    color: red;
+}
+
+.navbar-toggler{
+	border: none;
+}
+
+.iconoCarrito{
+	padding-bottom: 4px;
+}
+.cambiarfooter{
+	background-color: #e1e1e1;
+}
+.py-5 {
+  padding-top: 1rem !important;
+  padding-bottom: 1rem !important;
+}
+body{
+	margin-bottom: 60px;
+}
+.anchoContenedor{
+    width: 100%;
+  }
+.altoFormulario{
+    height: auto;
+}
+footer{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+.botonLoginRegistro{
+	border-radius: 0px;
+}

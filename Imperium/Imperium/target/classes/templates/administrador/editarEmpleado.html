@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.88.1">
+    <link rel="icon" th:href="@{/img/logo-tienda.ico}">
+    <title>Administracion - Editar empleado</title>
+    
+    <!-- Bootstrap core CSS -->
+	<link th:href="@{/bootstrap/assets/dist/css/bootstrap.min.css}" rel="stylesheet">
+	
+	<!-- Custom styles for this template -->
+    <link th:href="@{/bootstrap/dashboard/css/dashboard.css}" rel="stylesheet">
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+        .tituloAdministrador{
+            margin-left: 50px;
+        }
+      }
+      
+      @media (max-width: 768px) {
+        .tituloAdministrador{
+			margin-left: 60px;
+		}
+      }
+      
+      .botonAdminEjecutar{
+		margin-top: 10px;
+	  }
+    </style>
+  </head>
+  <body>
+		<header th:replace="/fragments/headerAdministrador"></header>
+
+		<div class="container-fluid">
+		  <div class="row">
+    		<nav th:replace="/fragments/menuAdministrador"></nav>
+
+		    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+		      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+		        <h1 class="h2">EDITAR empleado</h1>
+		      </div>
+			
+		      <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
+				<div class="card h-100">
+					<div class="card-body">
+						<div class="row gutters">
+							<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+								<h6 class="mb-3 text-primary">Datos del empleado</h6>
+							</div>
+							
+							<form th:action="@{/admin/empleados/editarEmpleadoExistente}" th:object="${usuario}" method="post" name="formularioEditarEmpleado">
+							     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <input type="hidden" th:field="*{id}" class="form-control" id="fullName">
+                                    </div>
+                                </div>
+							     
+								<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+									<div class="form-group">
+										<label for="fullName">Nombre de usuario</label>
+										<input type="text" th:field="*{nombre}" class="form-control" id="fullName">
+									</div>
+								</div>
+								
+								<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+									<div class="form-group">
+										<label for="fullName">Nombre</label>
+										<input type="text" th:field="*{nombreUsuario}" class="form-control" id="fullName">
+									</div>
+								</div>
+								
+								<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+									<div class="form-group">
+										<label for="fullName">Apellido</label>
+										<input type="text" th:field="*{apellido}" class="form-control" id="fullName">
+									</div>
+								</div>
+								
+								<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+									<div class="form-group">
+										<label for="fullName">Email</label>
+										<input type="text" th:field="*{email}" class="form-control" id="fullName">
+									</div>
+								</div>
+								
+								<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+									<div class="form-group">
+										<label for="fullName">Direccion</label>
+										<input type="text" th:field="*{direccion}" class="form-control" id="fullName">
+									</div>
+								</div>
+								
+								<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+									<div class="form-group">
+										<label for="fullName">Localidad</label>
+										<input type="text" th:field="*{localidad}" class="form-control" id="fullName">
+									</div>
+								</div>
+								
+								<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+									<div class="form-group">
+										<label for="fullName">Provincia</label>
+										<input type="text" th:field="*{provincia}" class="form-control" id="fullName">
+									</div>
+								</div>
+								
+								<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+									<div class="form-group">
+										<label for="fullName">Pais</label>
+										<input type="text" th:field="*{pais}" class="form-control" id="fullName">
+									</div>
+								</div>
+								
+								<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+									<div class="form-group">
+										<label for="fullName">Telefono</label>
+										<input type="text" th:field="*{telefono}" class="form-control" id="fullName">
+									</div>
+								</div>
+								
+								<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+									<div class="form-group">
+										<label for="fullName">Rol</label>
+										<input type="text" th:field="*{rol}" class="form-control" id="fullName">
+									</div>
+								</div>
+								
+								<input type="submit" value="editar" name="editar" id="crear" class="w-50 btn btn-lg btn-primary botonAdminEjecutar"/>
+							</form>
+							
+						</div>
+					</div>
+				</div>
+			</div>
+		    </main>
+		  </div>
+		</div>
+		
+		<script th:src="@{/bootstrap/assets/dist/js/bootstrap.bundle.min.js}"></script>
+	  	<!-- 
+		<script th:src="@{dashboard.js}"></script>
+		<script th:src="@{https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js}" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script>
+	  	<script th:src="@{https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js}" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script>
+  		-->
+  </body>
+</html>

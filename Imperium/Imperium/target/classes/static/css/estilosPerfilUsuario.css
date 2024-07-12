@@ -1,0 +1,143 @@
+body{
+    background: #1A233A;
+}
+.colorTextosPerfil{
+	color: #bcd0f7;
+}
+.account-settings .user-profile {
+    margin: 0 0 1rem 0;
+    text-align: center;
+}
+
+.account-settings .user-profile .user-avatar {
+    margin: 0 0 1rem 0;
+}
+.account-settings .user-profile .user-avatar img {
+    width: 90px;
+    height: 90px;
+    -webkit-border-radius: 100px;
+    -moz-border-radius: 100px;
+    border-radius: 100px;
+}
+.account-settings .user-profile h5.user-name {
+    margin: 0 0 0.5rem 0;
+}
+.account-settings .user-profile h6.user-email {
+    margin: 0;
+    font-size: 0.8rem;
+    font-weight: 400;
+}
+.account-settings .about {
+    margin: 1rem 0 0 0;
+    font-size: 0.8rem;
+    text-align: center;
+}
+.card {
+    background: white;
+    border-radius: 0;
+    margin-bottom: 1rem;
+}
+.form-control {
+    border: 1px solid #596280;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    font-size: .825rem;
+    background: #1A233A;
+    color: #bcd0f7;
+}
+.botonCerrarSesion{
+	background-color: red;
+	border-color: red;
+	border-radius: 0px;
+	width: 150px;
+}
+.botonCerrarSesion:hover{
+	background-color: #dc3545;
+	border-color: #dc3545;
+}
+.botonEditarPerfil{
+    background-color: rgb(0, 128, 255);
+    margin: 5px;
+    border-radius: 0px;
+    width: 150px;
+    border: none;
+}
+.botonAplicarEditarPerfil{
+    background-color: rgb(0, 181, 90);
+    border: none;
+    margin: 10px;
+    border-radius: 0px;
+    width: 150px;
+    right: 0;
+    position: absolute;
+    margin-right: 16px;
+}
+.botonAplicarEditarPerfil:hover{
+    background-color: rgb(0, 128, 64);
+    border: none;
+}
+
+@import url('https://fonts.googleapis.com/css?family=Assistant');
+
+
+
+.cell-1 {
+    border-collapse: separate;
+    border-spacing: 0 4em;
+    background: #fff;
+    border-bottom: 5px solid transparent;
+    background-clip: padding-box
+}
+
+thead {
+    background: #dddcdc
+}
+
+.toggle-btn {
+    width: 40px;
+    height: 21px;
+    background: grey;
+    border-radius: 50px;
+    padding: 3px;
+    cursor: pointer;
+    -webkit-transition: all 0.3s 0.1s ease-in-out;
+    -moz-transition: all 0.3s 0.1s ease-in-out;
+    -o-transition: all 0.3s 0.1s ease-in-out;
+    transition: all 0.3s 0.1s ease-in-out
+}
+
+.toggle-btn>.inner-circle {
+    width: 15px;
+    height: 15px;
+    background: #fff;
+    border-radius: 50%;
+    -webkit-transition: all 0.3s 0.1s ease-in-out;
+    -moz-transition: all 0.3s 0.1s ease-in-out;
+    -o-transition: all 0.3s 0.1s ease-in-out;
+    transition: all 0.3s 0.1s ease-in-out
+}
+
+.toggle-btn.active {
+    background: blue !important
+}
+
+.toggle-btn.active>.inner-circle {
+    margin-left: 19px
+}
+
+nav-link{
+	border-top-left-radius: 0rem;
+	border-top-right-radius: 0rem;
+}
+.nav-tab{
+	border-top-left-radius: 0rem;
+	border-top-right-radius: 0rem;
+}
+.letraBotonesMenu{
+	margin: 15px;
+	text-decoration: none;
+}
+.nav-item{
+	margin: 10px;
+}

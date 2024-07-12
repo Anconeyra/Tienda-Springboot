@@ -1,0 +1,17 @@
+<div class="about">
+	<ul class="nav nav-tabs flex-column border-0 pt-4 pl-4 pb-4" id="myTab" role="tablist">
+		<li class="nav-item"><a class=" link-primary letraBotonesMenu" id="orders-tab" data-toggle="tab"
+				th:href="@{/usuario/miPerfil}"  aria-controls="orders" aria-selected="false">Perfil</a></li>
+		<li class="nav-item"><a class="link-primary letraBotonesMenu" id="orders-tab" data-toggle="tab"
+				th:href="@{/usuario/miPerfil/misPedidos}" role="tab" aria-controls="orders" aria-selected="false">Pedidos</a></li>
+	</ul>
+	<div>
+	   <a th:href="@{/usuario/miPerfil/editarPerfil}">
+         <button type="button" id="submit" name="submit" class="btn btn-primary botonEditarPerfil">Editar perfil</button>
+        </a>
+	</div>
+	<div>
+	   <a th:href="@{/usuario/miPerfil/cerrarSesion}"><button type="button" id="submit" name="submit" class="btn btn-primary botonCerrarSesion">Cerrar sesion</button>
+        </a>
+	</div>
+</div>

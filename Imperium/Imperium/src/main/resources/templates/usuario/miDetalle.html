@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+	    <link rel="icon" href="<%=request.getContextPath()%>/media/logo-tienda.ico">
+		<title>Mis pedidos</title>
+		
+		<!-- Bootstrap core CSS -->
+    	<link th:href="@{/bootstrap/assets/dist/css/bootstrap.min.css}" rel="stylesheet">
+    	
+    	<!-- Custom styles for this template -->
+    	<link rel="stylesheet" type="text/css" th:href="@{http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css}">
+    	<link th:href="@{/css/estilos.css}" rel="stylesheet">
+    	<link th:href="@{/css/estilosPerfilUsuario.css}" rel="stylesheet">
+		
+		<style>
+			header{
+				margin-bottom:20px;
+			}
+			.anchoContenedor{
+	        	width: 100%;
+			}
+			.altoFormulario{
+			   height: auto;
+			}
+			footer{
+			   position: fixed;
+			   bottom: 0;
+			   width: 100%;
+			}
+			.letraBotonesMenu{
+                font-size: 20px;
+                border: none;
+            }
+            .verPedidos{
+				background-color: white;
+			}
+			.bi{
+                vertical-align: -.125em;
+            }
+		</style>
+	</head>
+	<body>
+		<header th:replace="/fragments/header"></header>
+		<div class="container">
+		<div class="row gutters">
+		<div th:replace="/fragments/perfil"></div>
+		<div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
+			<div class="card h-100">
+				<div class="card-body verPedidos">
+				     <div class="card">
+				         <div class="card-header p-4">
+				             <div class="float-right">
+				                 <h3 class="mb-0">Pedido <span th:text="${session.datosPedido.num_factura}"></span></h3>
+				                 Fecha: <span th:text="${session.datosPedido.fecha}"></span><br>
+				                 Metodo de pago: <span th:text="${session.datosPedido.metodo_pago}"></span>
+				             </div>
+				         </div>
+				         <div class="card-body">
+				             <div class="table-responsive-sm">
+				                 <table class="table table-striped">
+				                     <thead>
+				                         <tr>
+				                             <th></th>
+				                             <th>Producto</th>
+				                             <th class="right">Descripcion</th>
+				                             <th class="center">Cantidad</th>
+				                             <th class="right">Precio</th>
+				                         </tr>
+				                     </thead>
+				                     <tbody>
+				                         <tr th:each="producto: ${session.detallePedido}">
+				                             <td class="center"><img th:src="@{/img/productos/}+${producto.producto.id}+@{.PNG}" width="125"></td>
+				                             <td class="left strong" th:text="${producto.producto.nombre}"></td>
+				                             <td class="left" th:text="${producto.producto.descripcion}"></td>
+				                             <td class="right" th:text="${producto.unidades}"></td>
+				                             <td class="center"><span th:text="${producto.total}"></span>S/</td>
+				                         </tr>
+				                     </tbody>
+				                 </table>
+				             </div>
+				             <div class="row">
+				                 <div class="col-lg-9 col-sm-5"></div>
+				                 <div class="col-lg-3 col-sm-5">
+				                     <table class="table table-clear">
+				                         <tbody>
+				                             <tr>
+				                                 <td class="left">
+				                                     <strong class="text-dark">Envio</strong>
+				                                 </td>
+				                                 <td class="right">Gratuito</td>
+				                             </tr>
+				                             <tr>
+				                                 <td class="left">
+				                                     <strong class="text-dark">Subtotal</strong>
+				                                 </td>
+				                                 <td class="right"><span th:text="${session.subtotalSinImpuestos}"></span>S/</td>
+				                             </tr>
+				                             <tr>
+				                                 <td class="left">
+				                                     <strong class="text-dark">IVA (18%)</strong>
+				                                 </td>
+				                                 <td class="right"><span th:text="${session.iva}"></span>S/</td>
+				                             </tr>
+				                             <tr>
+				                                 <td class="left">
+				                                     <strong class="text-dark">Total</strong> </td>
+				                                 <td class="right">
+				                                     <strong class="text-dark"><span th:text="${session.datosPedido.total}"></span>S/</strong>
+				                                 </td>
+				                             </tr>
+				                         </tbody>
+				                     </table>
+				                 </div>
+				             </div>
+				         </div>
+				     </div>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+	<footer th:replace="/fragments/footer"></footer>
+	</body>
+</html>

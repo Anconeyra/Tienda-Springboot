@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="<%=request.getContextPath()%>/media/logo-tienda.ico">
+    <title>Detalle de producto</title>
+    
+    <!-- Bootstrap core CSS -->
+    <link th:href="@{/bootstrap/assets/dist/css/bootstrap.min.css}" rel="stylesheet">
+
+    <style>
+        body{
+            background-color: #edf1f5;
+        }
+        .card {
+            margin-bottom: 30px;
+        }
+        .card {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            min-width: 0;
+            word-wrap: break-word;
+            background-color: #fff;
+            background-clip: border-box;
+            border: 0 solid transparent;
+            border-radius: 0;
+        }
+        .card .card-subtitle {
+            font-weight: 300;
+            margin-bottom: 10px;
+            color: #8898aa;
+        }
+        .table-product.table-striped tbody tr:nth-of-type(odd) {
+            background-color: #f3f8fa!important
+        }
+        .table-product td{
+            border-top: 0px solid #dee2e6 !important;
+            color: #728299!important;
+        }
+        .botonComprarDetalle{
+            background-color: #d90000;
+            border-radius: 0px;
+            border: none;
+            width: 150px;
+            font-weight: bold;
+            font-size: 18px;
+        }
+        .botonComprarDetalle:hover{
+            border: none;
+            background-color: rgb(205, 16, 16);
+        }
+    </style>
+    
+    <!-- Custom styles for this template -->
+    <link th:href="@{/css/estilos.css}" type="text/css" rel="stylesheet">
+    <link th:href="@{/bootstrap/list-groups/list-groups.css}" rel="stylesheet">
+</head>
+<body>
+    <header th:replace="/fragments/header"></header>
+    <div class="container">
+        <div class="card">
+            <div class="card-body">
+                <h3 th:text="${session.detalleProducto.nombre}" class="card-title"></h3>
+                <br>
+                <div class="row">
+                    <div class="col-lg-5 col-md-5 col-sm-6">
+                        <div class="white-box text-center"><img th:src="@{/img/productos/}+${session.detalleProducto.id}+@{.PNG}" class="img-responsive img-fluid"></div>
+                    </div>
+                    <div class="col-lg-7 col-md-7 col-sm-6">
+                        <h4 class="box-title mt-5">Descripcion del producto</h4>
+                        <p th:text="${session.detalleProducto.descripcion}"></p>
+                        <h2 class="mt-5"><span th:text="${session.detalleProducto.precio}"></span>€</h2>
+                        <h6 class="card-subtitle mb-2 text-muted">(Sin iva)</h6>
+                        <a th:href="@{/meterProducto(id=${session.detalleProducto.id})}"><button class="btn btn-primary btn-rounded botonComprarDetalle">Comprar</button></a>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                        <h3 class="box-title mt-5">Informacion general</h3>
+                        <div class="table-responsive">
+                            <table class="table table-striped table-product">
+                                <tbody>
+                                    <tr>
+                                        <td width="390">Marca</td>
+                                        <td>TIENDA</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Nombre</td>
+                                        <td th:text="${session.detalleProducto.nombre}"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Descripcion</td>
+                                        <td th:text="${session.detalleProducto.descripcion}"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Condicion del producto</td>
+                                        <td>Nuevo</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer th:replace="/fragments/footer"></footer>
+</body>
+</html>
